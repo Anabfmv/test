@@ -78,6 +78,13 @@ public class AutoTests {
         Assert.assertTrue(steps.nickNameIsChanged(newNick));
     }
 
+    @Test(description = "pass the lesson on JavaRush")
+    public void passLesson(){
+        steps.logInJavaRush(secrKeyAnon1);
+        utils.Sleep();
+        Assert.assertTrue(steps.passLesson());
+    }
+
     @AfterMethod(description = "Close browser")
     public void closeBrowser() {
         steps.closeDriver();

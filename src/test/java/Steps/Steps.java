@@ -76,4 +76,8 @@ public class Steps {
         LoginPage loginPage = new LoginPage(driver);
         return loginPage.nickNameIsChanged(newNick);
     }
+    public boolean passLesson(){
+        CoursePage coursePage = new CoursePage(driver);
+        return  coursePage.passLesson();
+    }
 }
