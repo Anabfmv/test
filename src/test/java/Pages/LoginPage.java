@@ -1,6 +1,8 @@
 package Pages;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import Utils.Utils;
@@ -11,31 +13,31 @@ public class LoginPage extends AbstractPage{
     @FindBy (id = "pProfileLink")
     private WebElement profilePage;
 
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div[3]/div[1]/form[5]/input")
+    @FindBy(xpath = "//input[@id='secretKeyBox']")
     private WebElement loginTextBox;
 
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div[3]/div[1]/form[5]/div/button")
+    @FindBy(xpath = "(//button)[5]")
     private  WebElement loginButton;
 
-    @FindBy(xpath = "//*[@id=\"menu-item-exit\"]/a")
+    @FindBy(xpath = "//a[text()='Выход']")
     private  WebElement loginOut;
 
-    @FindBy(xpath = "/html/body/div[2]/table/tbody/tr/td[4]/table/tbody/tr[2]/td/div/div[2]")
+    @FindBy(xpath = "(//div[@class='gwt-Label profile-user-name'])[2]")
     private WebElement linkLoggedInUser;
 
-    @FindBy (xpath = "/html/body/header/div[1]/div/div[2]/button")
+    @FindBy (xpath = "//button[text()='Начать обучение']")
     private WebElement startLesson;
 
-    @FindBy (xpath = "//*[@id=\"center\"]/table/tbody/tr/td[1]/table/tbody/tr[3]/td/div/a")
+    @FindBy (xpath = "//a[text()='Мои Личные данные']")
     private WebElement myData;
 
-    @FindBy (xpath = "//*[@id=\"center\"]/table/tbody/tr/td[5]/table/tbody/tr/td/div/input[1]")
+    @FindBy (xpath = "//input[@class='gwt-TextBox profile-private-user-name profile-user-textbox-textbox']")
     private WebElement nickNameTB;
 
-    @FindBy (xpath = "//*[@id=\"center\"]/table/tbody/tr/td[5]/table/tbody/tr/td/div/button")
+    @FindBy (xpath = "//button[text()='Сохранить']")
     private WebElement saveChanges;
 
-    public LoginPage(WebDriver driver)
+     public LoginPage(WebDriver driver)
     {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -51,17 +53,18 @@ public class LoginPage extends AbstractPage{
         startLesson.click();
         loginTextBox.sendKeys(secretKey);
         loginButton.click();
+
     }
 
     public String getLoggedInUserName()
     {
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         return linkLoggedInUser.getText();
     }
 
     public void logOut(){
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         loginOut.click();
     }
@@ -71,7 +74,7 @@ public class LoginPage extends AbstractPage{
     }
 
     public String changeNickName(){
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         myData.click();
         utils.Sleep();
@@ -83,11 +86,10 @@ public class LoginPage extends AbstractPage{
         return nickName;
     }
     public boolean nickNameIsChanged(String newNick){
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         String tbNickName=linkLoggedInUser.getText();
         utils.Sleep();
-        //change nickname to previous state
         myData.click();
         utils.Sleep();
         nickNameTB.clear();

@@ -11,38 +11,42 @@ import Utils.Utils;
 public class MessagePage extends AbstractPage{
     private Utils utils = new Utils();
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[1]/table/tbody/tr[1]/td/div/a")
+    @FindBy(xpath = "//a[text()='Все Пользователи']")
     private WebElement allUsers;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/input")
+    @FindBy(xpath = "(//tr/td/input)[1]")
     private WebElement inputTextBoxName;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/button")
+    @FindBy(xpath = "//button[text()='Поиск']")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[1]/table/tbody/tr[5]/td/div/a")
+    @FindBy(xpath = "//a[text()='Мои Друзья']")
     private WebElement myFriends;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[3]/table/tbody/tr[2]/td/div/button[1]")
+    @FindBy(xpath = "//button[text()='Написать сообщение']")
     private WebElement sendMessToUser;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[7]/table/tbody/tr[2]/td/div/input[2]")
+    @FindBy(xpath = "//input[@style='width: 500px; height: 25px; position: absolute; left: 170px; top: 81px;']")
     private WebElement theme;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[7]/table/tbody/tr[2]/td/div/textarea")
+    @FindBy(xpath = "//textarea[@style='width: 570px; height: 250px; position: absolute; left: 100px; top: 150px;']")
     private WebElement message;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[7]/table/tbody/tr[2]/td/div/button")
+    @FindBy(xpath = "//button[text()='Отправить']")
     private WebElement sendButton;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[1]/table/tbody/tr[4]/td/div/a")
+    @FindBy(xpath = "//a[@href='#messages']")
     private WebElement myMessages;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[6]/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td[5]/button")
+    @FindBy(xpath = "//button[text()='Читать']")
     private WebElement answer;
 
-    @FindBy(xpath = "/html/body/div[3]/div/table/tbody/tr[2]/td[2]/div/div/button[2]")
+    @FindBy(xpath = "//button[text()='Ответить']")
     private WebElement answerToUser;
+
+    @FindBy(xpath = "//a[@id='pProfileLink']")
+    private WebElement myPage;
+
 
     public MessagePage(WebDriver driver)
     {
@@ -57,7 +61,7 @@ public class MessagePage extends AbstractPage{
 
     public boolean sendMessage(String from, String to, String secrKey){
         LoginPage loginPage = new LoginPage(driver);
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         allUsers.click();
         utils.Sleep();
@@ -76,7 +80,7 @@ public class MessagePage extends AbstractPage{
         utils.Sleep();
         loginPage.logIn(secrKey);
         utils.Sleep();
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         myMessages.click();
         utils.Sleep();
@@ -84,7 +88,7 @@ public class MessagePage extends AbstractPage{
     }
     public boolean answerOnMessage(String from, String to, String secrKey){
         LoginPage loginPage = new LoginPage(driver);
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         myMessages.click();
         utils.Sleep();
@@ -98,7 +102,7 @@ public class MessagePage extends AbstractPage{
         utils.Sleep();
         loginPage.logIn(secrKey);
         utils.Sleep();
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         myMessages.click();
         utils.Sleep();

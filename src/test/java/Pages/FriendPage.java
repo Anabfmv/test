@@ -9,22 +9,22 @@ import Utils.Utils;
 public class FriendPage extends AbstractPage{
     private Utils utils = new Utils();
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[1]/table/tbody/tr[1]/td/div/a")
+    @FindBy(xpath = "//a[@href='#people' and text()='Все Пользователи'] ")
     private WebElement allUsers;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/input")
+    @FindBy(xpath = "(//tr/td/input)[1]")
     private WebElement inputTextBoxName;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/button")
+    @FindBy(xpath = "//button[text()='Поиск']")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[3]/table/tbody/tr[2]/td/div/button[2]")
+    @FindBy(xpath = "//button[text()='Добавить в друзья']")
     private WebElement addButton;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[1]/table/tbody/tr[5]/td/div/a")
+    @FindBy(xpath = "//a[text()='Мои Друзья']")
     private WebElement myFriends;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[3]/table/tbody/tr[2]/td/div/button[2]")
+    @FindBy(xpath = "//button[text()='Удалить из друзей']")
     private WebElement deleteButton;
 
     public FriendPage(WebDriver driver)
@@ -39,25 +39,25 @@ public class FriendPage extends AbstractPage{
     }
 
     public boolean addFriend(String anonName){
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
-        utils.Sleep();
-        allUsers.click();
-        utils.Sleep();
-        inputTextBoxName.sendKeys(anonName);
-        searchButton.click();
-        utils.Sleep();
-        //to do
-        driver.findElement(By.linkText(anonName)).click();
-        utils.Sleep();
-        addButton.click();
-        utils.Sleep();
-        myFriends.click();
-        utils.Sleep();
-        return driver.getPageSource().contains(anonName);
+       driver.navigate().to(URL_B);
+       utils.Sleep();
+       allUsers.click();
+       utils.Sleep();
+       inputTextBoxName.sendKeys(anonName);
+       searchButton.click();
+       utils.Sleep();
+       //to do
+       driver.findElement(By.linkText(anonName)).click();
+       utils.Sleep();
+       addButton.click();
+       utils.Sleep();
+       myFriends.click();
+       utils.Sleep();
+       return driver.getPageSource().contains(anonName);
     }
 
     public boolean deleteFriend(String anonName){
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         myFriends.click();
         utils.Sleep();

@@ -1,4 +1,5 @@
 package Pages;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -6,22 +7,22 @@ import org.openqa.selenium.support.PageFactory;
 import Utils.Utils;
 public class InvitePage extends AbstractPage{
     private Utils utils=new Utils();
-    @FindBy(xpath = "/html/body/header/div[1]/div/div[2]/button")
+    @FindBy(xpath = "//button[text()='Начать обучение']")
     private WebElement startLessons;
 
-    @FindBy(xpath = "//*[@id=\"rightmenu1\"]/form[4]/div/button/div")
+    @FindBy(xpath = "//div[text()='Получить секретный ключ']")
     private WebElement generateSecret;
 
-    @FindBy(xpath = "//*[@id=\"secretKeyForm\"]/div/button/div")
+    @FindBy(xpath = "//div[text()='Войти по секретному ключу']")
     private WebElement logIn;
 
-    @FindBy(xpath = "/html/body/div[2]/table/tbody/tr/td[4]/table/tbody/tr[2]/td/div/div[2]")
+    @FindBy(xpath = "(//div[@class='gwt-Label profile-user-name'])[2]")
     private WebElement userName;
 
-    @FindBy(xpath = "//*[@id=\"menu-item-exit\"]/a")
+    @FindBy(xpath = "//a[text()='Выход']")
     private WebElement logOut;
 
-    @FindBy(xpath = "//*[@id=\"center\"]/table/tbody/tr/td[1]/table/tbody/tr[6]/td/div/a")
+    @FindBy(xpath = "//a[text()='Мои Приглашенные']")
     private WebElement myInvites;
 
     public InvitePage(WebDriver driver)
@@ -43,7 +44,7 @@ public class InvitePage extends AbstractPage{
         utils.Sleep();
         logIn.click();
         utils.Sleep();
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
+        driver.navigate().to(URL_B);
         utils.Sleep();
         String anonName=userName.getText();
         logOut.click();
@@ -51,9 +52,8 @@ public class InvitePage extends AbstractPage{
     }
 
     public boolean isInvited(String anonName){
-        driver.navigate().to("http://javarush.ru/Profile.html?v=8#profile");
-        myInvites.click();
-        utils.Sleep();
-        return driver.getPageSource().contains(anonName);
+       driver.navigate().to(URL_B);
+       myInvites.click();
+       return driver.getPageSource().contains(anonName);
     }
 }

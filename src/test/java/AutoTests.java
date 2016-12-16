@@ -20,14 +20,14 @@ public class AutoTests {
         steps.initBrowser();
     }
 
-    @Test(description = "Login to JavaRush")
+    @Test(description = "Login to JavaRush")//+
     public void logInJavaRush() {
         steps.logInJavaRush(secrKeyAnon1);
-        utils.Sleep();
+       utils.Sleep();
         Assert.assertTrue(steps.isLoggedIn(anon1));
     }
 
-    @Test(description = "LogOut from JavaRush")
+    @Test(description = "LogOut from JavaRush")//+
     public void logOutJavaRush(){
         steps.logInJavaRush(secrKeyAnon1);
         utils.Sleep();
@@ -35,23 +35,24 @@ public class AutoTests {
         Assert.assertTrue(steps.isLoggedOut());
     }
 
-    @Test(description = "invite user to JavaRush")
+    @Test(description = "invite user to JavaRush")//+
     public void inviteUser(){
+
         String anon2Name = steps.inviteUser(linkInvite);
-        utils.Sleep();
+     utils.Sleep();
         steps.logInJavaRush(secrKeyAnon1);
         utils.Sleep();
         Assert.assertTrue(steps.isInvited(anon2Name));
     }
 
-    @Test(description = "add friend on JavaRush")
+    @Test(description = "add friend on JavaRush")//+
     public void addFriend(){
         steps.logInJavaRush(secrKeyAnon1);
         utils.Sleep();
         Assert.assertTrue(steps.addFriend(user2Name));
     }
 
-    @Test(description = "delete friend on JavaRush")
+    @Test(description = "delete friend on JavaRush")//+
     public void deleteFriend(){
         steps.logInJavaRush(secrKeyAnon1);
         utils.Sleep();
@@ -67,7 +68,7 @@ public class AutoTests {
     public void answerOnMessage(){
         steps.logInJavaRush(secrKeyClashko);
         utils.Sleep();
-        Assert.assertTrue(steps.answerOnMessage(anon1,user2Name,secrKeyAnon1));
+       Assert.assertTrue(steps.answerOnMessage(anon1,user2Name,secrKeyAnon1));
     }
 
     @Test(description = "answer on message on JavaRush")
@@ -78,7 +79,7 @@ public class AutoTests {
         Assert.assertTrue(steps.nickNameIsChanged(newNick));
     }
 
-    @Test(description = "pass the lesson on JavaRush")
+    @Test(description = "pass the lesson on JavaRush")//+
     public void passLesson(){
         steps.logInJavaRush(secrKeyAnon1);
         utils.Sleep();
